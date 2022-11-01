@@ -1,25 +1,30 @@
-import express, {Express} from 'express';
-import {router} from './router'
+import express from 'express';
 import redis from 'redis';
+
+import {stringRouter} from "./string.js";
+import {hashRouter} from "./hash.js";
+import {listRouter} from "./list.js";
+import {setsRouter} from "./sets.js";
 
 
 export const client = redis.createClient();
 
-const port: number = 3000;
+const port = 3000;
+const host = 'localhost';
 
-const host: string = 'localhost';
-
-const app: Express = express();
-
+const app = express();
 
 app.use(express.json());
 
-app.use('/api', router);
+app.use('/api', stringRouter);
+app.use('/api', hashRouter);
+app.use('/api', listRouter);
+app.use('/api', setsRouter);
 
-(async function (): Promise<void> {
-	try {
+(async function ()  {
+	try{
 		await client.connect();
-		app.listen(port, (): void => {
+		app.listen(port, ()=> {
 			console.log(`Server started on host: http://${host}:${port}`);
 		})
 	} catch (error) {

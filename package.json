@@ -2,7 +2,7 @@
   "name": "redis",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
@@ -16,7 +16,6 @@
     "redis": "^4.3.1"
   },
   "devDependencies": {
-    "@types/express": "^4.17.14",
     "nodemon": "^2.0.20"
   }
 }
