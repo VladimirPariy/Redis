@@ -1,6 +1,7 @@
 import express from 'express';
 import redis from 'redis';
 
+import {namespacesRouter} from "./namespaces.js";
 import {stringRouter} from "./string.js";
 import {hashRouter} from "./hash.js";
 import {listRouter} from "./list.js";
@@ -17,16 +18,17 @@ const app = express();
 
 app.use(express.json());
 
+app.use('/api', namespacesRouter);
 app.use('/api', stringRouter);
 app.use('/api', hashRouter);
 app.use('/api', listRouter);
 app.use('/api', setsRouter);
 app.use('/api', ttlRouter);
 
-(async function ()  {
-	try{
+(async function () {
+	try {
 		await client.connect();
-		app.listen(port, ()=> {
+		app.listen(port, () => {
 			console.log(`Server started on host: http://${host}:${port}`);
 		})
 	} catch (error) {
