@@ -7,7 +7,7 @@ const hashRouter = new Router();
 hashRouter.post('/hashUser', async (req, res) => {
 	try {
 		const {name, age} = req.body;
-		const hset = await client.hSet('usersHash', ['name', name, 'age', age]);
+		const hset = await client.hSet('userHash', ['name', name, 'age', age]);
 		res.send(hset.toString());
 	} catch (error) {
 		res.sendStatus(500).send(error.message);
@@ -16,7 +16,7 @@ hashRouter.post('/hashUser', async (req, res) => {
 
 hashRouter.get('/hashUserName', async (req, res) => {
 	try {
-		const hget = await client.hGet('usersHash', 'name');
+		const hget = await client.hGet('userHash', 'name');
 		res.send(hget);
 	} catch (error) {
 		res.status(500).send(error);
@@ -25,7 +25,7 @@ hashRouter.get('/hashUserName', async (req, res) => {
 
 hashRouter.get('/hashUser', async (req, res) => {
 	try {
-		const hgetAll = await client.hGetAll('usersHash');
+		const hgetAll = await client.hGetAll('userHash');
 		res.send(hgetAll);
 	} catch (error) {
 		res.status(500).send(error);
@@ -34,7 +34,7 @@ hashRouter.get('/hashUser', async (req, res) => {
 
 hashRouter.get('/hashUserVal', async (req, res) => {
 	try {
-		const hVals = await client.hVals('usersHash');
+		const hVals = await client.hVals('userHash');
 		res.send(hVals);
 	} catch (error) {
 		res.status(500).send(error);

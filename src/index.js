@@ -1,12 +1,13 @@
 import express from 'express';
 import redis from 'redis';
 
-import {namespacesRouter} from "./namespaces.js";
 import {stringRouter} from "./string.js";
 import {hashRouter} from "./hash.js";
 import {listRouter} from "./list.js";
 import {setsRouter} from "./sets.js";
 import {ttlRouter} from "./ttl.js";
+import {namespacesRouter} from "./namespaces.js";
+import {removeRouter} from "./remove.js";
 
 
 export const client = redis.createClient();
@@ -18,12 +19,13 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api', namespacesRouter);
 app.use('/api', stringRouter);
 app.use('/api', hashRouter);
 app.use('/api', listRouter);
 app.use('/api', setsRouter);
 app.use('/api', ttlRouter);
+app.use('/api', namespacesRouter);
+app.use('/api', removeRouter);
 
 (async function () {
 	try {
