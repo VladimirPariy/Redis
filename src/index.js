@@ -5,6 +5,7 @@ import {stringRouter} from "./string.js";
 import {hashRouter} from "./hash.js";
 import {listRouter} from "./list.js";
 import {setsRouter} from "./sets.js";
+import {ttlRouter} from "./ttl.js";
 
 
 export const client = redis.createClient();
@@ -20,6 +21,7 @@ app.use('/api', stringRouter);
 app.use('/api', hashRouter);
 app.use('/api', listRouter);
 app.use('/api', setsRouter);
+app.use('/api', ttlRouter);
 
 (async function ()  {
 	try{
@@ -29,5 +31,6 @@ app.use('/api', setsRouter);
 		})
 	} catch (error) {
 		console.log(error);
+		throw new Error(error.message)
 	}
 })()

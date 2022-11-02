@@ -10,7 +10,7 @@ stringRouter.post('/userString', async (req, res) => {
 		const set = await client.set('userString', name);
 		res.send(set.toString());
 	} catch (error) {
-		res.sendStatus(500).send(error.message);
+		res.status(500).send(error.message);
 	}
 })
 
@@ -39,7 +39,7 @@ stringRouter.put('/userString', async (req, res) => {
 		const getSet = await client.getSet('userString', key);
 		res.send(getSet.toString());
 	} catch (error) {
-		res.sendStatus(500).send(error.message);
+		res.status(500).send(error.message);
 	}
 })
 
@@ -49,7 +49,7 @@ stringRouter.post('/userStringAppend', async (req, res) => {
 		const append = await client.append('userString', key);
 		res.send(append.toString());
 	} catch (error) {
-		res.sendStatus(500).send(error.message);
+		res.status(500).send(error.message);
 	}
 })
 
